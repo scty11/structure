@@ -1,0 +1,17 @@
+{
+  "name": "gadets_store",
+  "version": "1.0.0",
+  "description": "sample_app",
+  "main": "mainApp.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "scott wright",
+  "license": "ISC",
+  "dependencies": {
+    "angular": "^1.5.8",
+    "angular-route": "^1.5.8",
+    "angular-validation": "^1.4.2",
+    "bootstrap": "^3.3.7"
+  }
+}

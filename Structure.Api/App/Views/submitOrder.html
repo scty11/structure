@@ -1,0 +1,42 @@
+
+<h2>
+    Check out
+</h2>
+<p>
+    Enter your shipping details below, and we'll ship your goods as far as possible!
+</p>
+<div ng-controller="checkoutCtrl">
+<form name="Form" angular-validator-submit="sendOrder()" novalidate angular-validator  novalidate>
+    <div class="well col-md-6">
+        <div class="form-group">
+            <input type="text" name="companyName" class="form-control" ng-model="shipping.CompanyName" required placeholder="Company Name" />
+           
+        </div>
+        <div class="form-group">
+            <input type="text" name="fullName" class="form-control" ng-model="shipping.OwnerName" required placeholder="Full Name" required-message="Full Name is required" />
+           
+        </div>
+ 
+        <div class="form-group">
+            <input type="text" name="street" class="form-control" ng-model="shipping.Street" placeholder="Shippping Address" required-message="Shippping Address is required" />
+        </div>
+        <div class="form-group">
+            <input type="text" name="city" class="form-control" ng-model="shipping.City" placeholder="City" required-message="City is required" />
+            
+        </div>
+        <div class="form-group">
+            <input type="text" name="zip" class="form-control" ng-model="shipping.Zip" placeholder="Postcode" required-message="Postcode is required" />
+           
+        </div>
+        <div class="form-group">
+            <input type="text" name="country" class="form-control" ng-model="shipping.Country" placeholder="Country" required-message="Country is required" />
+           
+        </div>
+        <div class="text-center">
+            <button type="submit" class="btn btn-primary pull-left">
+                Complete order
+            </button>
+        </div>
+    </div>
+</form>
+</div>

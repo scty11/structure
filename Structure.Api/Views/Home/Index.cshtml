@@ -1,0 +1,49 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html ng-app="gadgetsStore">
+<head>
+    <base href="/">
+    <meta name="viewport" content="width=device-width"/>
+    <link href="~/node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet"/>
+    <title>Gadget Store</title>
+</head>
+<body ng-controller='gadgetStoreCtrl' class="container">
+    <div class="navbar navbar-default" role="navigation" ng-hide="checkoutComplete()">
+        <a class="navbar-brand" href="/">Gadgets</a>
+        <div class="col-sm-6 col-md-6" ng-show="showFilter">
+            <form class="navbar-form" role="search">
+                <div class="input-group">
+                    <input type="text" class="form-control input-group-lg" placeholder="Filter gadgets.." ng-model="searchItem">
+                </div>
+            </form>
+        </div>
+        <cart-details></cart-details>
+    </div>
+    @*<div class="alert alert-danger" ng-show="data.error" ng-cloak>
+        Error ({{data.error.status}}). Gadget's weren't not loaded.
+        <a href="#" class="alert-link">Click here to try again</a>
+    </div>*@
+    <ng-view />
+    <script src="~/node_modules/angular/angular.min.js"></script>
+<script src="~/node_modules/angular-route/angular-route.min.js"></script>
+   <script src="~/App/Common/Filters/module.js"></script>
+<script src="~/App/Common/Cart/cartModule.js"></script>
+    <script src="~/App/Common/Validator/validatorModule.js"></script>
+<script src="~/App/mainApp.js"></script>
+<script src="~/App/Common/Cart/cartService.js"></script>
+    <script src="~/App/Common/Validator/angular-validator.js"></script>
+    <script src="~/App/Services/DataService.js"></script>
+    <script src="~/App/Common/Cart/cartDetails.js"></script>
+<script src="~/App/Controllers/gadgetStoreCtrl.js"></script>
+<script src="~/App/Controllers/gadetsCtrl.js"></script>
+    <script src="~/App/Controllers/checkoutCtrl.js"></script>
+    <script src="~/App/Controllers/cartDetailsCtrl.js"></script>
+<script src="~/App/Common/Filters/pageCountFilter.js"></script>
+    <script src="~/App/Common/Filters/rangeFilter.js"></script>
+</body>
+</html>
