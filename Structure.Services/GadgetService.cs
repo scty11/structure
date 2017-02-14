@@ -56,7 +56,7 @@ namespace Structure.Services
         public bool Exixts(int id)
         {
             var result = _gadgetRepository.GetById(id);
-            return result == null;
+            return result != null;
         }
 
         public void CreateGadget(Gadget gadget)

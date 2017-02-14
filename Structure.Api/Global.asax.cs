@@ -4,7 +4,6 @@ using System.Web.Mvc;
 using System.Web.Routing;
 using System.Web.Http;
 using Structure.Data.Seed;
-using Structure.Web.App_Start;
 
 namespace Structure.Api
 {
@@ -17,11 +16,10 @@ namespace Structure.Api
 
             // Code that runs on application startup
             AreaRegistration.RegisterAllAreas();
-            GlobalConfiguration.Configure(WebApiConfig.Register);
+            //GlobalConfiguration.Configure(WebApiConfig.Register);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
 
-            //set up autofac
-            AutofacBootstraper.SetAutofacWebAPI();
+           
         }
     }
 }

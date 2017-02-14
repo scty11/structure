@@ -12,6 +12,8 @@ namespace Structure.Web.Controllers
         private readonly IGadgetService _gadgetService;
         private readonly IMapper _mapper;
 
+        
+
         public GadgetsController(IGadgetService gadgetService, IMapper mapper)
         {
             _gadgetService = gadgetService;
@@ -22,9 +24,11 @@ namespace Structure.Web.Controllers
         [Route("api/Gadgets")]
         public IHttpActionResult GetGadgets()
         {
-            return Ok(_gadgetService.GetGadgets());
+            return Ok("test"); //Ok(_gadgetService.GetGadgets());
         }
 
+        [HttpGet]
+        [Route("api/Gadgets/{id}")]
         public IHttpActionResult GetGadget(int id)
         {
             GadgetViewModel vm = null;
@@ -42,8 +46,9 @@ namespace Structure.Web.Controllers
             return Ok(vm);
 
         }
-
-        public IHttpActionResult PutGadget(int id, GadgetViewModel vm)
+        [HttpPut]
+        [Route("api/Gadgets/{id}")]
+        public IHttpActionResult PutGadget(int id,[FromBody] GadgetViewModel vm)
         {
             Gadget domain = null;
 
@@ -55,7 +60,7 @@ namespace Structure.Web.Controllers
             {
                 return BadRequest();
             }
-            if (_gadgetService.Exixts(id))
+            if (!_gadgetService.Exixts(id))
             {
                 return NotFound();
             }
@@ -68,9 +73,11 @@ namespace Structure.Web.Controllers
             return StatusCode(HttpStatusCode.NoContent);
 
         }
-
-        public IHttpActionResult PostOrder(GadgetViewModel vm)
+        [HttpPost]
+        [Route("api/Gadgets")]
+        public IHttpActionResult PostOrder([FromBody]GadgetViewModel vm)
         {
+            return Ok(vm);
             Gadget domain = null;
 
             if (!ModelState.IsValid)
@@ -85,7 +92,9 @@ namespace Structure.Web.Controllers
             return CreatedAtRoute("DefaultApi", new { id = domain.GadgetID }, domain);
 
         }
-
+        
+        [HttpDelete]
+        [Route("api/Gadgets/{id}")]
         public IHttpActionResult DeleteOrder(int id)
         {
             Gadget domain = _gadgetService.GetGadget(id);
