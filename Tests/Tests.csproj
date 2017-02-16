@@ -105,8 +105,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApiIntergrationTests\GadgetsApiIntergrationTests.cs" />
+    <Compile Include="ControllerTests\CategoriesControllerTests.cs" />
     <Compile Include="ControllerTests\GadgetControllerTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RouteTests\CategoriesRouteTests.cs" />
     <Compile Include="RouteTests\GadgetsRouteTests.cs" />
   </ItemGroup>
   <ItemGroup>

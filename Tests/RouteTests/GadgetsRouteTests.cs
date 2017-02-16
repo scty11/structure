@@ -36,7 +36,7 @@ namespace Tests.RouteTests
         {
             MyWebApi
                 .Routes()
-                .ShouldMap("/api/Gadgets/Post")
+                .ShouldMap("/api/Gadgets")
                 .WithHttpMethod(HttpMethod.Post)
                 .WithJsonContent(@"{""Name"":""Valid Name"",""Description"":""Valid Description"",""Price"":""1"",""Image"":""Valid Image""}")
                 .To<GadgetsController>(c => c.PostOrder( new GadgetViewModel()

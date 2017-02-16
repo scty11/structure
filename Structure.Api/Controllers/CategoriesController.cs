@@ -37,22 +37,22 @@ namespace Structure.Web.Controllers
         [Route("api/Categories/{id}")]
         public IHttpActionResult GetCategory(int id)
         {
-            CategoryViewModel vm = null;
-            Category domain = null;
 
-            domain = _categoryService.GetCategory(id);
+            var domain = _categoryService.GetCategory(id);
 
             if (domain == null)
             {
                 return NotFound();
             }
 
-            vm = _mapper.Map<Category, CategoryViewModel>(domain);
+            var vm = _mapper.Map<Category, CategoryViewModel>(domain);
 
             return Ok(vm);
 
         }
-        // GET: api/Categories/5
+
+        [HttpPut]
+        [Route("api/Categories/{id}")]
         public IHttpActionResult PutCategory(int id, CategoryViewModel vm)
         {
             Category domain = null;
@@ -79,6 +79,8 @@ namespace Structure.Web.Controllers
 
         }
 
+        [HttpPost]
+        [Route("api/Categories")]
         public IHttpActionResult PostCategory(CategoryViewModel vm)
         {
             Category domain = null;
@@ -96,6 +98,8 @@ namespace Structure.Web.Controllers
 
         }
 
+        [HttpDelete]
+        [Route("api/Categories/{id}")]
         public IHttpActionResult DeleteCategory(int id)
         {
             Category domain = _categoryService.GetCategory(id);

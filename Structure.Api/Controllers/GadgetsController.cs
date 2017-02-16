@@ -24,7 +24,7 @@ namespace Structure.Web.Controllers
         [Route("api/Gadgets")]
         public IHttpActionResult GetGadgets()
         {
-            return Ok("test"); //Ok(_gadgetService.GetGadgets());
+            return Ok(_gadgetService.GetGadgets());
         }
 
         [HttpGet]
@@ -65,7 +65,6 @@ namespace Structure.Web.Controllers
                 return NotFound();
             }
 
-
             domain = _mapper.Map<GadgetViewModel, Gadget>(vm);
 
             _gadgetService.Update(domain);
@@ -77,7 +76,6 @@ namespace Structure.Web.Controllers
         [Route("api/Gadgets")]
         public IHttpActionResult PostOrder([FromBody]GadgetViewModel vm)
         {
-            return Ok(vm);
             Gadget domain = null;
 
             if (!ModelState.IsValid)
