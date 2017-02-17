@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using AutoMapper;
 using Moq;
 using MyTested.WebApi;
@@ -83,6 +79,41 @@ namespace Tests.ControllerTests
 
             Assert.That(result, Is.Not.Null);
 
+        }
+
+        [Test]
+        public void PostShouldReturnCreated()
+        {
+            var vObj = new CategoryViewModel()
+            {
+                Name = "Valid Name"
+            };
+            var dObj = new Category()
+            {
+                Name = "Valid Name"
+            };
+
+            _fakeMapper.Setup(m => m.Map<CategoryViewModel,Category >(It.IsAny<CategoryViewModel>()))
+               .Returns(dObj);
+
+            _fakeCategoryService.Setup(m => m.CreateCategory(dObj));
+
+            _sutController
+                .Calling(c => c.PostCategory(vObj))
+                .ShouldReturn()
+                .Created();
+
+        }
+
+        [Test]
+        public void PostShouldReturnBadRequest()
+        {
+            _sutController
+                .Calling(c => c.PostCategory(new CategoryViewModel()))
+                .ShouldReturn()
+                .BadRequest()
+                .WithModelStateFor<CategoryViewModel>()
+                .ContainingModelStateErrorFor(m => m.Name);
         }
 
         private IAndControllerBuilder<CategoriesController> GetFakeController()

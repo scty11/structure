@@ -24,12 +24,12 @@ namespace Structure.Web.Controllers
         [Route("api/Categories")]
         public IHttpActionResult GetCategories()
         {
-            List<CategoryViewModel> vm = new List<CategoryViewModel>();
             var results = _categoryService.GetCategories().ToList();
-            foreach (var category in results)
-            {
-                vm.Add(_mapper.Map<Category, CategoryViewModel>(category));
-            }
+
+            var vm = results
+                     .Select(category => _mapper.Map<Category, CategoryViewModel>(category))
+                     .ToList();
+
             return Ok(vm);
         }
 
@@ -83,19 +83,17 @@ namespace Structure.Web.Controllers
         [Route("api/Categories")]
         public IHttpActionResult PostCategory(CategoryViewModel vm)
         {
-            Category domain = null;
-
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
-            domain = _mapper.Map<CategoryViewModel, Category>(vm);
+
+            var domain = _mapper.Map<CategoryViewModel, Category>(vm);
 
             _categoryService.CreateCategory(domain);
             _categoryService.SaveCategory();
 
             return CreatedAtRoute("DefaultApi", new { id = domain.CategoryID }, domain);
-
         }
 
         [HttpDelete]
