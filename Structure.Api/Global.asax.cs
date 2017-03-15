@@ -12,7 +12,7 @@ namespace Structure.Api
         void Application_Start(object sender, EventArgs e)
         {
             // Init database
-            System.Data.Entity.Database.SetInitializer(new SeedData());
+            //System.Data.Entity.Database.SetInitializer(new SeedData());
 
             // Code that runs on application startup
             AreaRegistration.RegisterAllAreas();

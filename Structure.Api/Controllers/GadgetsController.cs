@@ -87,7 +87,7 @@ namespace Structure.Web.Controllers
             _gadgetService.CreateGadget(domain);
             _gadgetService.SaveGadget();
 
-            return CreatedAtRoute("DefaultApi", new { id = domain.GadgetID }, domain);
+            return Ok(domain);
 
         }
         

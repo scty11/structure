@@ -10,7 +10,7 @@ namespace Structure.Web.Controllers
         public ActionResult Index()
         {
            
-            return View("index1");
+            return View("index");
         }
 
        

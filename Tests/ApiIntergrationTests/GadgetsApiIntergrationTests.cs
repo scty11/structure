@@ -14,11 +14,12 @@ namespace Tests.ApiIntergrationTests
     [TestFixture()]
     public class GadgetsApiIntergrationTests
     {
+        private int createdId;
 
         [SetUp]
         public void SetUp()
         {
-            MyWebApi.Server().Starts<Startup>(host: "https://localhost", port: 9876);
+            MyWebApi.Server().Starts<Startup>(host: "https://localhost", port: 50394);
         }
 
         [OneTimeTearDown]
@@ -71,7 +72,26 @@ namespace Tests.ApiIntergrationTests
                 .WithResponseModelOfType<GadgetViewModel>()
                 .AndProvideTheModel();
 
-            var u = response.Description;
+            Assert.That(response.GadgetID, Is.GreaterThan(0));
+
+            createdId = response.GadgetID;
+        }
+
+        [Test, Order(3)]
+        public void DeleteGadgetShouldReturnOk()
+        {
+
+            MyWebApi
+                .Server()
+                .Working()
+                .WithHttpRequestMessage(
+                    request => request
+                        .WithMethod(HttpMethod.Delete)
+                        .WithRequestUri("/api/Gadgets/" + createdId))
+                .ShouldReturnHttpResponseMessage()
+                .WithStatusCode(HttpStatusCode.OK);
+
+           
         }
     }
 }
